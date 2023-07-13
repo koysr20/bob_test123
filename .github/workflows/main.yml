@@ -22,7 +22,7 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -c "import sys; print(sys.version)" >> python_result.txt
-        
+        id: python38
         
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
@@ -33,6 +33,7 @@ jobs:
         run: | 
           python -c "import sys; print(sys.version)"
           python -c "import sys; print(sys.version)" >> python_result.txt
+        id: python39
         
       - uses: actions/checkout@v3
       - name: Set up Python 3.10
@@ -43,3 +44,10 @@ jobs:
         run: | 
           python -c "import sys; print(sys.version)"
           python -c "import sys; print(sys.version)" >> python_result.txt
+        id: python310
+        
+      - name: Save as file
+        run: |
+          echo "${{ steps.python38.outputs.stdout }}" >> python_result.txt
+          echo "${{ steps.python39.outputs.stdout }}" >> python_result.txt
+          echo "${{ steps.python310.outputs.stdout }}" >> python_result.txt
