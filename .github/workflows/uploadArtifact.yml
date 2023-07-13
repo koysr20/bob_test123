@@ -18,6 +18,7 @@ jobs:
           uses: actions/download-artifact@v2
           with:
             name: python-versions
+            path: python_versions
 
         - name: Read Python Version from File
-          run: cat python_result.txt
+          run: cat python_versions/python_result.txt
