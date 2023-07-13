@@ -21,9 +21,7 @@ jobs:
       - name: Display Python version 3.8
         run: |
           python -c "import sys; print(sys.version)"
-          python -c "import sys; print(sys.version)" > python_result.txt
-          python -c "import sys; print(sys.version)" >> python_result.txt
-          cat python_result.txt
+        id: python38
         
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
@@ -33,8 +31,7 @@ jobs:
       - name: Display Python version 3.9
         run: | 
           python -c "import sys; print(sys.version)"
-          python -c "import sys; print(sys.version)" >> python_result.txt
-          cat python_result.txt
+        id: python39
         
       - uses: actions/checkout@v3
       - name: Set up Python 3.10
@@ -44,7 +41,14 @@ jobs:
       - name: Display Python version 3.10
         run: | 
           python -c "import sys; print(sys.version)"
-          python -c "import sys; print(sys.version)" >> python_result.txt
+        id: python310
+      
+      - name: Add to file
+        run: |
+          echo "${{ steps.python38.outputs.stdout }}" >> python_result.txt
+          echo "${{ steps.python39.outputs.stdout }}" >> python_result.txt
+          echo "${{ steps.python310.outputs.stdout }}" >> python_result.txt
+          
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
