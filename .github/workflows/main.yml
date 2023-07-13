@@ -20,7 +20,7 @@ jobs:
           python-version: ${{ matrix.python-version1 }}
       - name: Display Python version 3.8
         run: |
-          python -c "import sys; print(sys.version)"
+          python -c "import sys; print(sys.version)" >> $GITHUB_OUTPUT
         id: python38
         
       - uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
           python-version: ${{ matrix.python-version2 }}
       - name: Display Python version 3.9
         run: | 
-          python -c "import sys; print(sys.version)"
+          python -c "import sys; print(sys.version)" >> $GITHUB_OUTPUT
         id: python39
         
       - uses: actions/checkout@v3
@@ -40,14 +40,12 @@ jobs:
           python-version: ${{ matrix.python-version3 }}
       - name: Display Python version 3.10
         run: | 
-          python -c "import sys; print(sys.version)"
+          python -c "import sys; print(sys.version)" >> $GITHUB_OUTPUT
         id: python310
       
       - name: Add to file
         run: |
-          echo "${{ steps.python38.outputs.stdout }}" >> python_result.txt
-          echo "${{ steps.python39.outputs.stdout }}" >> python_result.txt
-          echo "${{ steps.python310.outputs.stdout }}" >> python_result.txt
+          echo "$GITHUB_OUTPUT" >> python_result.txt
           
         
       - name: Upload Artifact
