@@ -13,40 +13,76 @@ jobs:
         python-version3: ["3.10"]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version1 }}
-      - name: Display Python version 3.8
-        run: |
-          python -c "import sys; print(sys.version)" >> "$GITHUB_OUTPUT"
-        id: python38
+#       - uses: actions/checkout@v3
+#       - name: Set up Python 3.8
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: ${{ matrix.python-version1 }}
+#       - name: Display Python version 3.8
+#         run: |
+#           python -c "import sys; print(sys.version)"
+#         id: python38
         
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version2 }}
-      - name: Display Python version 3.9
-        run: | 
-          python -c "import sys; print(sys.version)" >> "$GITHUB_OUTPUT"
-        id: python39
+#       - uses: actions/checkout@v3
+#       - name: Set up Python 3.9
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: ${{ matrix.python-version2 }}
+#       - name: Display Python version 3.9
+#         run: | 
+#           python -c "import sys; print(sys.version)" 
+#         id: python39
         
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version3 }}
-      - name: Display Python version 3.10
-        run: | 
-          python -c "import sys; print(sys.version)" >> "$GITHUB_OUTPUT"
-        id: python310
+#       - uses: actions/checkout@v3
+#       - name: Set up Python 3.10
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: ${{ matrix.python-version3 }}
+#       - name: Display Python version 3.10
+#         run: | 
+#           python -c "import sys; print(sys.version)" 
+#         id: python310
       
-      - name: Add to file
+#       - name: Add to file
+#         run: |
+#           echo "$GITHUB_OUTPUT" >> python_result.txt
+#           steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+
+
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Print Python 3.8 version
+        run: python --version
+        id: python38
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Print Python 3.9 version
+        run: python --version
+        id: python39
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+      - name: Print Python 3.10 version
+        run: python --version
+        id: python310
+
+      - name: Save Python Versions to File
         run: |
-          echo "$GITHUB_OUTPUT" >> python_result.txt
-          
+          echo "${{ steps.python38.outputs.stdout }}" >> python_versions.txt
+          echo "${{ steps.python39.outputs.stdout }}" >> python_versions.txt
+          echo "${{ steps.python310.outputs.stdout }}" >> python_versions.txt
+
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
