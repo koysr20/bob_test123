@@ -88,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: python-versions
-          path: python_result.txt
+          path: python_versions.txt
           
       - name: Download Artifact
         uses: actions/download-artifact@v2
