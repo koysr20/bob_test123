@@ -3,8 +3,8 @@ name: Upload a Build Artifact
 on:
   workflow_run:
     workflows: [Python]
-    branches:
-      - main
+    types : 
+      - completed
 
 jobs:
   receive_python_versions:
@@ -13,10 +13,6 @@ jobs:
     steps:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
-      
-      - name: now upload
-        run: |
-          cat main.yml > ./result.txt
-        
-    
-  
+        with:
+          name: python-versions
+          path: python_result.txt
