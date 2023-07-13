@@ -1,2 +1,14 @@
 name: Upload a Build Artifact
 uses: actions/upload-artifact@v3.1.2
+
+steps:
+  uses: actions/checkout@v3
+
+  run: mkdir -p ./artifact
+
+  run: echo "hi" > ./artifact/world.txt
+
+  uses: actions/upload-artifact@v3
+  with:
+    name: my-artifact
+    path: path/to/artifact/world.txt
