@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - name : do ls
-        run : |
-          ls
-          pwd
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
-        with:
-          name: python-versions
-          path: python_result.txt
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Download Artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: python-versions
+
+        - name: Read Python Version from File
+          run: cat python_result.txt
