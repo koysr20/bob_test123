@@ -97,4 +97,4 @@ jobs:
           path: python_versions
 
       - name: Read Python Version from File
-        run: cat python_versions/python_result.txt
+        run: cat python_versions/python_versions.txt
