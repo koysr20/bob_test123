@@ -48,10 +48,8 @@ jobs:
           python -c "import sys; print(sys.version)" > python_result.txt
         id: python310
         
-      - name: Save as file
-        run: |
-          echo "${{ steps.python38.outputs.stdout }}" > python_result.txt
-          echo "${{ steps.python39.outputs.stdout }}" > python_result.txt
-          echo "${{ steps.python310.outputs.stdout }}" > python_result2.txt
-          pwd
-          ls
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: python-versions
+          path: python_result.txt
