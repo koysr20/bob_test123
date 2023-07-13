@@ -59,6 +59,7 @@ jobs:
           python-version: 3.8
       - name: Print Python 3.8 version
         run: python --version
+          echo $(python --version) >> python_versions.txt
         id: python38
 
       - name: Set up Python 3.9
@@ -67,6 +68,7 @@ jobs:
           python-version: 3.9
       - name: Print Python 3.9 version
         run: python --version
+          echo $(python --version) >> python_versions.txt
         id: python39
 
       - name: Set up Python 3.10
@@ -75,6 +77,7 @@ jobs:
           python-version: ${{ matrix.python-version3 }}
       - name: Print Python 3.10 version
         run: python --version
+            echo $(python --version) >> python_versions.txt
         id: python310
 
       - name: Save Python Versions to File
