@@ -22,6 +22,8 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -c "import sys; print(sys.version)" > python_result.txt
+          pwd
+          ls
         id: python38
         
       - uses: actions/checkout@v3
